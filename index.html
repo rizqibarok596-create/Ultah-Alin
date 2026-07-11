@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday!</title>
+    <title>Happy Birthday, Alin!</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
     <!-- AOS Animation CSS -->
@@ -14,7 +14,7 @@
             --soft-pink-darker: #fdb9c8;
             --matcha-green: #C5D8A4;
             --matcha-darker: #aabf88;
-            --bg-color: #FFF9FA; /* Sangat soft pink/white */
+            --bg-color: #FFF9FA; 
             --text-dark: #4A4A4A;
         }
 
@@ -55,9 +55,10 @@
             font-size: 1.2rem;
             margin-bottom: 40px;
             color: #555;
+            max-width: 600px;
         }
 
-        /* Simple CSS Cake */
+        /* Simple CSS Cake - Temanya Matcha */
         .cake-container {
             position: relative;
             cursor: pointer;
@@ -69,7 +70,7 @@
         .cake {
             width: 220px;
             height: 90px;
-            background-color: var(--matcha-green);
+            background-color: var(--matcha-green); /* Kue rasa matcha! */
             border-radius: 15px 15px 0 0;
             position: relative;
             box-shadow: inset 0 -15px 0 rgba(0,0,0,0.08);
@@ -143,7 +144,13 @@
         .impressions h2 {
             font-size: 3rem;
             color: var(--matcha-darker);
+            margin-bottom: 10px;
+        }
+        .impressions .subtitle {
+            font-size: 1.1rem;
+            color: #666;
             margin-bottom: 50px;
+            font-style: italic;
         }
         .cards {
             display: flex;
@@ -169,13 +176,14 @@
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
         }
         .card h3 { 
-            font-size: 2.2rem; 
+            font-size: 2rem; 
             color: #6b824a; 
             margin-bottom: 12px; 
         }
         .card p {
             line-height: 1.6;
             color: #555;
+            font-size: 0.95rem;
         }
 
         /* Section 3: Polaroid Gallery */
@@ -222,7 +230,7 @@
             width: 100%;
             text-align: center;
             font-family: 'Caveat', cursive;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             color: #333;
         }
         
@@ -286,7 +294,7 @@
             max-width: 450px;
             width: 90%;
             box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-            border: 2px solid var(--soft-pink);
+            border: 2px solid var(--matcha-green);
             transform: translateY(50px) scale(0.9);
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
@@ -294,7 +302,7 @@
         
         .modal-content h3 { 
             font-size: 3rem; 
-            color: #d16b84; 
+            color: #6b824a; 
             margin-bottom: 15px; 
         }
         .modal-content p { 
@@ -304,8 +312,8 @@
             color: #555;
         }
         .close-btn {
-            background: var(--soft-pink);
-            color: #333;
+            background: var(--matcha-green);
+            color: #fff;
             border: none;
             padding: 12px 30px;
             border-radius: 25px;
@@ -316,7 +324,7 @@
             transition: background 0.3s;
         }
         .close-btn:hover {
-            background: var(--soft-pink-darker);
+            background: var(--matcha-darker);
         }
     </style>
 </head>
@@ -324,8 +332,8 @@
 
     <!-- Hero Section with Interactive Cake -->
     <section class="hero">
-        <h1 data-aos="zoom-in">Happy Birthday! 🎉</h1>
-        <p data-aos="fade-up" data-aos-delay="200">Semoga hari ini secerah senyum kamu.</p>
+        <h1 data-aos="zoom-in">Happy Birthday, Alin! 🍵🎉</h1>
+        <p data-aos="fade-up" data-aos-delay="200">Semoga hari ini secerah senyum kamu. Ada special virtual Matcha Cake buat merayakan harimu!</p>
         
         <div class="cake-container" data-aos="fade-up" data-aos-delay="400" onclick="blowCandle()">
             <div class="candle">
@@ -338,56 +346,60 @@
 
     <!-- Impressions Section (Glassmorphism Design) -->
     <section class="impressions">
-        <h2 data-aos="fade-up">First Impressions</h2>
+        <h2 data-aos="fade-up">Things I Admire About You</h2>
+        <p class="subtitle" data-aos="fade-up" data-aos-delay="50">Sedikit apresiasi buat Alin yang hebat.</p>
         <div class="cards">
+            <!-- Card 1: Independent Woman -->
             <div class="card" data-aos="fade-up" data-aos-delay="100">
-                <h3>Positive Vibes</h3>
-                <p>Dari awal kenal, selalu bawa energi yang bikin orang sekitarnya ikut seneng.</p>
+                <h3>Independent Woman 💼</h3>
+                <p>Salut banget sama semangat kerjamu yang luar biasa. Tipe cewek independen yang tangguh dan selalu tahu apa yang dimau. Tapi ingat, jangan lupa istirahat ya!</p>
             </div>
+            <!-- Card 2: Matcha -->
             <div class="card" data-aos="fade-up" data-aos-delay="200">
-                <h3>Senyumnya</h3>
-                <p>Nggak usah ditanya, senyumnya beneran nular dan bikin adem.</p>
+                <h3>Matcha Addict 🍵</h3>
+                <p>Karena tahu banget kalau kamu suka matcha, makanya warna web ini sengaja dibuat dengan tone Green Matcha khusus buat kamu. Suka nggak?</p>
             </div>
+            <!-- Card 3: Keliling Dunia & Tawaran Bantuan Trip -->
             <div class="card" data-aos="fade-up" data-aos-delay="300">
-                <h3>Taste Musik</h3>
-                <p>Seleranya keren! Sering banget dengerin lagu yang ternyata enak banget didengerin bareng.</p>
+                <h3>World Explorer ✈️</h3>
+                <p>Semoga mimpimu keliling dunia bisa segera terwujud. Btw, kalau nanti butuh partner jalan yang jago ngatur budget dan itinerary open trip, you know who to call 😉</p>
             </div>
         </div>
     </section>
 
     <!-- Gallery Section (Polaroid Style) -->
     <section class="gallery">
-        <h2 data-aos="fade-down">Appreciation Post</h2>
+        <h2 data-aos="fade-down">The One & Only, Alin.</h2>
         <div class="polaroid-container">
             <div class="polaroid" data-aos="fade-right">
-                <!-- IMPORTANT: Ganti link src ini dengan link/lokasi foto asli pacar kamu -->
+                <!-- IMPORTANT: Ganti link src ini dengan link/lokasi foto asli Alin -->
                 <img src="https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?w=400&q=80" alt="Foto 1">
-                <div class="caption">Suka banget foto ini!</div>
+                <div class="caption">Semangat terus kerjanya!</div>
             </div>
             <div class="polaroid" data-aos="zoom-in" data-aos-delay="100">
-                <!-- IMPORTANT: Ganti link src ini dengan link/lokasi foto asli pacar kamu -->
+                <!-- IMPORTANT: Ganti link src ini dengan link/lokasi foto asli Alin -->
                 <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400&q=80" alt="Foto 2">
-                <div class="caption">Cute! ✨</div>
+                <div class="caption">Matcha time? 🍵</div>
             </div>
             <div class="polaroid" data-aos="fade-left" data-aos-delay="200">
-                <!-- IMPORTANT: Ganti link src ini dengan link/lokasi foto asli pacar kamu -->
+                <!-- IMPORTANT: Ganti link src ini dengan link/lokasi foto asli Alin -->
                 <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=80" alt="Foto 3">
-                <div class="caption">Always glowing</div>
+                <div class="caption">Soon keliling dunia! ✈️</div>
             </div>
         </div>
     </section>
 
     <!-- Call to Action Section -->
     <section class="cta" data-aos="fade-up">
-        <button class="btn" onclick="openModal()">Ada 1 kado lagi buat kamu 🎁</button>
+        <button class="btn" onclick="openModal()">Ada 1 kado lagi buat Alin 🎁</button>
     </section>
 
     <!-- Hidden Modal Message -->
     <div class="modal-overlay" id="modal">
         <div class="modal-content">
-            <h3>Happy Level Up!</h3>
-            <p>Kado virtualnya udah ya. Kado aslinya nyusul pas kita dinner atau jalan nanti. Have a great day! 😊</p>
-            <button class="close-btn" onclick="closeModal()">See you!</button>
+            <h3>Happy Level Up, Lin!</h3>
+            <p>Kado virtualnya udah ya. Kado aslinya nyusul... Gimana kalau kita rayain sambil minum Matcha kesukaanmu, sekalian bahas destinasi jalan-jalan kita selanjutnya? 😊</p>
+            <button class="close-btn" onclick="closeModal()">Boleh banget!</button>
         </div>
     </div>
 
@@ -414,7 +426,7 @@
             flame.classList.add('out'); // Mematikan lilin
             candleBlown = true;
 
-            // Efek ledakan Confetti
+            // Efek ledakan Confetti (Warna Matcha & Pink)
             var duration = 3 * 1000;
             var animationEnd = Date.now() + duration;
             var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
@@ -431,11 +443,16 @@
                 }
 
                 var particleCount = 50 * (timeLeft / duration);
-                confetti(Object.assign({}, defaults, { particleCount,
-                    origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+                // Custom color confetti
+                confetti(Object.assign({}, defaults, { 
+                    particleCount,
+                    origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+                    colors: ['#C5D8A4', '#FFD1DC', '#ffffff']
                 }));
-                confetti(Object.assign({}, defaults, { particleCount,
-                    origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+                confetti(Object.assign({}, defaults, { 
+                    particleCount,
+                    origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+                    colors: ['#C5D8A4', '#FFD1DC', '#ffffff']
                 }));
             }, 250);
         }
@@ -449,7 +466,7 @@
                 particleCount: 150,
                 spread: 80,
                 origin: { y: 0.6 },
-                colors: ['#FFD1DC', '#C5D8A4', '#ffffff']
+                colors: ['#C5D8A4', '#FFD1DC', '#ffffff']
             });
         }
         function closeModal() {
