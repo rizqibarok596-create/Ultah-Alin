@@ -11,7 +11,6 @@
     <style>
         :root {
             --soft-pink: #FFD1DC;
-            --soft-pink-darker: #fdb9c8;
             --matcha-green: #C5D8A4;
             --matcha-dark: #8ba06a;
             --text-dark: #444;
@@ -75,27 +74,63 @@
             line-height: 32px;
             position: relative;
         }
-        .letter::before {
-            content: ''; position: absolute; top: 0; left: 40px; bottom: 0; width: 2px; background: rgba(255, 153, 153, 0.4);
-        }
+        .letter::before { content: ''; position: absolute; top: 0; left: 40px; bottom: 0; width: 2px; background: rgba(255, 153, 153, 0.4); }
         .letter h2 { font-size: 2.5rem; color: #b85c73; margin-bottom: 20px; padding-left: 15px; }
         .letter p { font-size: 1.05rem; padding-left: 15px; color: #555; margin-bottom: 15px; }
         .letter .signature { font-size: 1.5rem; color: #b85c73; margin-top: 30px; text-align: right; }
 
-        /* Affirmations Section */
-        .affirmation-section { padding: 80px 20px; background: rgba(197, 216, 164, 0.1); }
-        .affirmation-section h2 { text-align: center; font-size: 2.8rem; color: var(--matcha-dark); margin-bottom: 40px; }
-        .affirmation-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto; }
-        .affirmation-card { 
-            background: #fff; padding: 25px; border-radius: 20px; 
-            box-shadow: 0 5px 20px rgba(0,0,0,0.03); 
-            border-left: 4px solid var(--matcha-green);
-            transition: 0.3s;
+        /* Interactive Affirmation Section */
+        .affirmation-section { padding: 80px 20px; background: rgba(197, 216, 164, 0.1); display: flex; flex-direction: column; align-items: center; }
+        .affirmation-section h2 { text-align: center; font-size: 2.5rem; color: var(--matcha-dark); margin-bottom: 30px; }
+        
+        .interactive-card {
+            background: #fff;
+            width: 100%;
+            max-width: 600px;
+            min-height: 250px;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(197, 216, 164, 0.3);
+            border: 2px dashed var(--matcha-green);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .affirmation-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
-        .affirmation-card p { font-size: 0.95rem; color: #555; line-height: 1.6; }
+        .interactive-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(197, 216, 164, 0.5); }
+        .interactive-card:active { transform: scale(0.98); }
+        
+        #affirmation-text {
+            font-size: 1.2rem;
+            color: #444;
+            line-height: 1.8;
+            transition: opacity 0.4s ease-in-out; /* Animasi fade in/out */
+            opacity: 1;
+        }
+        
+        .tap-hint {
+            position: absolute;
+            bottom: 15px;
+            font-size: 0.8rem;
+            color: #999;
+            background: #f9f9f9;
+            padding: 4px 12px;
+            border-radius: 15px;
+        }
+        .counter {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 0.85rem;
+            color: var(--matcha-dark);
+            font-weight: 600;
+        }
 
-        /* Cards & Gallery from previous version */
+        /* Cards & Gallery */
         .impressions { padding: 80px 20px; text-align: center; }
         .cards { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; max-width: 900px; margin: 40px auto 0; }
         .card { background: rgba(197, 216, 164, 0.15); padding: 30px; border-radius: 20px; width: 280px; transition: 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
@@ -124,10 +159,9 @@
 </head>
 <body>
 
-    <!-- Audio Element (Ganti src dengan link MP3 lagumu) -->
+    <!-- Audio Element (Jangan lupa ganti src dengan link MP3 lagumu) -->
     <audio id="bg-music" loop>
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
     </audio>
 
     <!-- Floating Music Button -->
@@ -145,42 +179,24 @@
         <p class="instruction" data-aos="fade-up" data-aos-delay="600">Tap kuenya buat tiup lilin & nyalain musik!</p>
     </section>
 
-    <!-- Greeting Card (15 Kalimat) -->
+    <!-- Greeting Card -->
     <section class="greeting-section" data-aos="fade-up">
         <div class="letter">
             <h2>Dear Alin,</h2>
-            <p>
-                Selamat ulang tahun, ya! Nggak kerasa waktu cepet banget berlalunya. Di hari spesial ini, aku cuma mau bilang makasih karena kamu udah jadi versi terbaik dari diri kamu sendiri. Semoga tahun ini bawa lebih banyak kebahagiaan dan kejutan seru buat kamu. Sehat-sehat terus ya, itu yang paling penting sekarang. 
-            </p>
-            <p>
-                Semoga semua target dan plan yang udah kamu susun bisa pelan-pelan tercapai. Kurang-kurangin <i>overthinking</i>-nya, kamu tuh udah ngelakuin yang terbaik kok. Jangan lupa buat selalu luangin waktu buat seneng-seneng. Semoga rezekinya makin lancar dan berkah buat segala urusan. Kalau lagi capek, istirahat aja, dunia nggak bakal kiamat kok kalau kamu <i>break</i> bentar.
-            </p>
-            <p>
-                Semoga kita bisa terus bikin momen-momen seru bareng ke depannya. Tetep jadi Alin yang <i>humble</i> dan selalu ngangenin. Aku bakal selalu ada di sini buat <i>support</i> semua langkah kamu. <i>Enjoy your special day to the fullest!</i> <i>Happy level up</i>, sekali lagi!
-            </p>
+            <p>Selamat ulang tahun, ya! Nggak kerasa waktu cepet banget berlalunya. Di hari spesial ini, aku cuma mau bilang makasih karena kamu udah jadi versi terbaik dari diri kamu sendiri. Semoga tahun ini bawa lebih banyak kebahagiaan dan kejutan seru buat kamu. Sehat-sehat terus ya, itu yang paling penting sekarang.</p>
+            <p>Semoga semua target dan plan yang udah kamu susun bisa pelan-pelan tercapai. Kurang-kurangin <i>overthinking</i>-nya, kamu tuh udah ngelakuin yang terbaik kok. Jangan lupa buat selalu luangin waktu buat seneng-seneng. Semoga rezekinya makin lancar dan berkah buat segala urusan. Kalau lagi capek, istirahat aja, dunia nggak bakal kiamat kok kalau kamu <i>break</i> bentar.</p>
+            <p>Semoga kita bisa terus bikin momen-momen seru bareng ke depannya. Tetep jadi Alin yang <i>humble</i> dan selalu ngangenin. Aku bakal selalu ada di sini buat <i>support</i> semua langkah kamu. <i>Enjoy your special day to the fullest! Happy level up</i>, sekali lagi!</p>
             <p class="signature handwriting">Salam hangat,<br>Rizqi</p>
         </div>
     </section>
 
-    <!-- Affirmations (15 Kalimat) -->
+    <!-- Interactive Affirmation Section -->
     <section class="affirmation-section">
         <h2 data-aos="fade-up">Just a reminder for you...</h2>
-        <div class="affirmation-grid">
-            <div class="affirmation-card" data-aos="fade-up"><p>1. Kamu itu perempuan pekerja keras yang luar biasa, aku salut banget.</p></div>
-            <div class="affirmation-card" data-aos="fade-up" data-aos-delay="50"><p>2. Dedikasi kamu sama kerjaan tuh keren, tapi inget kesehatan tetap nomor satu.</p></div>
-            <div class="affirmation-card" data-aos="fade-up" data-aos-delay="100"><p>3. Nggak semua hal harus kamu pikul sendiri, <i>it's okay to ask for help</i>.</p></div>
-            <div class="affirmation-card" data-aos="fade-up" data-aos-delay="150"><p>4. Setiap langkah kecil yang kamu ambil sekarang bakal bawa kamu lebih dekat ke mimpi keliling dunia.</p></div>
-            <div class="affirmation-card" data-aos="fade-up" data-aos-delay="200"><p>5. Kamu pantas dapetin semua hal baik yang semesta tawarin.</p></div>
-            <div class="affirmation-card" data-aos="fade-up" data-aos-delay="250"><p>6. Kegagalan kecil bukan berarti kamu kalah, itu cuma batu loncatan.</p></div>
-            <div class="affirmation-card" data-aos="fade-up"><p>7. Minum matcha kesukaan kamu dan tarik napas panjang tiap kali dunia kerasa berat.</p></div>
-            <div class="affirmation-card" data-aos="fade-up" data-aos-delay="50"><p>8. Kamu berhak bangga sama seberapa jauh kamu udah bertahan sampai hari ini.</p></div>
-            <div class="affirmation-card" data-aos="fade-up" data-aos-delay="100"><p>9. Jangan ragu sama kemampuan diri sendiri, kamu lebih kuat dari yang kamu kira.</p></div>
-            <div class="affirmation-card" data-aos="fade-up" data-aos-delay="150"><p>10. Capek itu wajar, kamu bukan robot, jadi valid banget kalau mau rebahan seharian.</p></div>
-            <div class="affirmation-card" data-aos="fade-up" data-aos-delay="200"><p>11. Energi positif yang kamu bawa selalu bisa bikin suasana jadi lebih hangat.</p></div>
-            <div class="affirmation-card" data-aos="fade-up" data-aos-delay="250"><p>12. Teruslah bermimpi besar, karena aku yakin kamu bisa wujudin itu semua.</p></div>
-            <div class="affirmation-card" data-aos="fade-up"><p>13. Apapun rintangannya nanti, hadapi pelan-pelan, satu per satu.</p></div>
-            <div class="affirmation-card" data-aos="fade-up" data-aos-delay="50"><p>14. Kamu itu istimewa, jangan biarin siapapun bikin kamu ngerasa sebaliknya.</p></div>
-            <div class="affirmation-card" data-aos="fade-up" data-aos-delay="100"><p>15. Hari ini, esok, dan seterusnya, aku harap kamu selalu nemuin alasan buat senyum.</p></div>
+        <div class="interactive-card" data-aos="fade-up" onclick="nextAffirmation()">
+            <div class="counter" id="affirmation-counter">1 / 15</div>
+            <p id="affirmation-text">Kamu itu perempuan pekerja keras yang luar biasa, aku salut banget.</p>
+            <div class="tap-hint">Tap kartu ini untuk lanjut ✨</div>
         </div>
     </section>
 
@@ -227,6 +243,7 @@
         </div>
     </div>
 
+    <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
@@ -258,12 +275,58 @@
             document.getElementById('flame').classList.add('out');
             candleBlown = true;
             
-            // Auto-play music if not playing yet
             if(!isPlaying) toggleMusic();
-
             confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#C5D8A4', '#FFD1DC'] });
         }
 
+        // Interactive Affirmation Data & Logic
+        const affirmations = [
+            "Kamu itu perempuan pekerja keras yang luar biasa, aku salut banget.",
+            "Dedikasi kamu sama kerjaan tuh keren, tapi inget kesehatan tetap nomor satu.",
+            "Nggak semua hal harus kamu pikul sendiri, <i>it's okay to ask for help</i>.",
+            "Setiap langkah kecil yang kamu ambil sekarang bakal bawa kamu lebih dekat ke mimpi keliling dunia.",
+            "Kamu pantas dapetin semua hal baik yang semesta tawarin.",
+            "Kegagalan kecil bukan berarti kamu kalah, itu cuma batu loncatan.",
+            "Minum matcha kesukaan kamu dan tarik napas panjang tiap kali dunia kerasa berat.",
+            "Kamu berhak bangga sama seberapa jauh kamu udah bertahan sampai hari ini.",
+            "Jangan ragu sama kemampuan diri sendiri, kamu lebih kuat dari yang kamu kira.",
+            "Capek itu wajar, kamu bukan robot, jadi valid banget kalau mau rebahan seharian.",
+            "Energi positif yang kamu bawa selalu bisa bikin suasana jadi lebih hangat.",
+            "Teruslah bermimpi besar, karena aku yakin kamu bisa wujudin itu semua.",
+            "Apapun rintangannya nanti, hadapi pelan-pelan, satu per satu.",
+            "Kamu itu istimewa, jangan biarin siapapun bikin kamu ngerasa sebaliknya.",
+            "Hari ini, esok, dan seterusnya, aku harap kamu selalu nemuin alasan buat senyum."
+        ];
+        
+        let currentIdx = 0;
+        let isAnimating = false;
+
+        function nextAffirmation() {
+            if(isAnimating) return; // Mencegah klik spam saat animasi berjalan
+            isAnimating = true;
+            
+            const textEl = document.getElementById('affirmation-text');
+            const countEl = document.getElementById('affirmation-counter');
+            
+            // Fade out
+            textEl.style.opacity = 0;
+            
+            setTimeout(() => {
+                // Ganti teks setelah memudar (400ms sesuai dengan CSS transition)
+                currentIdx = (currentIdx + 1) % affirmations.length;
+                textEl.innerHTML = affirmations[currentIdx];
+                countEl.innerText = `${currentIdx + 1} / 15`;
+                
+                // Fade in
+                textEl.style.opacity = 1;
+                
+                setTimeout(() => {
+                    isAnimating = false;
+                }, 400); // Tunggu sampai animasi fade in selesai
+            }, 400);
+        }
+
+        // Modal Logic
         function openModal() { document.getElementById('modal').classList.add('active'); }
         function closeModal() { document.getElementById('modal').classList.remove('active'); }
     </script>
