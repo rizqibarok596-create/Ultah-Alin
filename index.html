@@ -4,106 +4,221 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday, Alin!</title>
-    <!-- Google Fonts: Poppins untuk teks, Dancing Script untuk kesan tulisan tangan -->
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         :root {
             --soft-pink: #FFD1DC;
+            --soft-pink-darker: #fdb9c8;
             --matcha-green: #C5D8A4;
             --matcha-dark: #8ba06a;
-            --text-dark: #333;
+            --text-dark: #444;
+            --bg-color: #FFF9FA;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; background-color: #FFF9FA; color: var(--text-dark); overflow-x: hidden; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); color: var(--text-dark); overflow-x: hidden; }
 
-        h1, h2, h3 { font-family: 'Dancing Script', cursive; }
+        h1, h2, h3, .handwriting { font-family: 'Dancing Script', cursive; }
+
+        /* Floating Music Button */
+        #music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--matcha-green);
+            color: #fff;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #music-btn:hover { transform: scale(1.1); background: var(--matcha-dark); }
+        .playing { animation: spin 4s linear infinite; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
 
         /* Hero */
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(180deg, var(--soft-pink) 0%, #FFF9FA 100%); padding: 20px; }
-        .hero h1 { font-size: 3.5rem; color: #b85c73; margin-bottom: 10px; }
+        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(180deg, var(--soft-pink) 0%, var(--bg-color) 100%); padding: 20px; }
+        .hero h1 { font-size: 4rem; color: #b85c73; margin-bottom: 10px; }
         .hero p { font-size: 1.1rem; color: #666; max-width: 500px; line-height: 1.6; }
 
         /* Interactive Cake */
-        .cake-container { cursor: pointer; transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); margin-top: 30px; }
+        .cake-container { cursor: pointer; transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); margin-top: 30px; position: relative; }
         .cake-container:hover { transform: scale(1.05); }
         .cake { width: 180px; height: 80px; background-color: var(--matcha-green); border-radius: 12px 12px 0 0; position: relative; }
         .candle { width: 10px; height: 40px; background: #ff9999; position: absolute; top: -40px; left: 50%; transform: translateX(-50%); border-radius: 2px; }
         .flame { width: 15px; height: 25px; background: #FFA500; border-radius: 50%; position: absolute; top: -25px; left: 50%; transform: translateX(-50%); animation: flicker 0.5s infinite alternate; }
         .flame.out { opacity: 0; }
         @keyframes flicker { 0% { transform: translateX(-50%) scale(1); } 100% { transform: translateX(-50%) scale(1.1); } }
+        
+        .instruction { font-size: 0.9rem; color: #888; margin-top: 50px; background: rgba(255,255,255,0.5); padding: 5px 15px; border-radius: 20px; }
 
-        /* Cards - No borders, soft look */
+        /* Greeting Card Section */
+        .greeting-section { padding: 80px 20px; display: flex; justify-content: center; }
+        .letter { 
+            background: #fff; 
+            max-width: 700px; 
+            padding: 40px; 
+            border-radius: 8px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            background-image: repeating-linear-gradient(transparent, transparent 31px, #f4f4f4 31px, #f4f4f4 32px);
+            line-height: 32px;
+            position: relative;
+        }
+        .letter::before {
+            content: ''; position: absolute; top: 0; left: 40px; bottom: 0; width: 2px; background: rgba(255, 153, 153, 0.4);
+        }
+        .letter h2 { font-size: 2.5rem; color: #b85c73; margin-bottom: 20px; padding-left: 15px; }
+        .letter p { font-size: 1.05rem; padding-left: 15px; color: #555; margin-bottom: 15px; }
+        .letter .signature { font-size: 1.5rem; color: #b85c73; margin-top: 30px; text-align: right; }
+
+        /* Affirmations Section */
+        .affirmation-section { padding: 80px 20px; background: rgba(197, 216, 164, 0.1); }
+        .affirmation-section h2 { text-align: center; font-size: 2.8rem; color: var(--matcha-dark); margin-bottom: 40px; }
+        .affirmation-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto; }
+        .affirmation-card { 
+            background: #fff; padding: 25px; border-radius: 20px; 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03); 
+            border-left: 4px solid var(--matcha-green);
+            transition: 0.3s;
+        }
+        .affirmation-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
+        .affirmation-card p { font-size: 0.95rem; color: #555; line-height: 1.6; }
+
+        /* Cards & Gallery from previous version */
         .impressions { padding: 80px 20px; text-align: center; }
         .cards { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; max-width: 900px; margin: 40px auto 0; }
-        .card { background: rgba(197, 216, 164, 0.15); backdrop-filter: blur(10px); padding: 30px; border-radius: 20px; width: 280px; transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .card { background: rgba(197, 216, 164, 0.15); padding: 30px; border-radius: 20px; width: 280px; transition: 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
         .card:hover { transform: translateY(-10px); }
         .card h3 { font-size: 1.8rem; color: var(--matcha-dark); margin-bottom: 10px; }
         .card p { font-size: 0.95rem; line-height: 1.7; color: #555; }
 
-        /* Gallery */
         .gallery { padding: 80px 20px; background: var(--soft-pink); text-align: center; }
         .polaroid-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 50px; }
         .polaroid { background: #fff; padding: 15px 15px 50px 15px; width: 220px; transform: rotate(-3deg); transition: 0.4s; }
-        .polaroid:hover { transform: rotate(0deg) scale(1.05); }
+        .polaroid:hover { transform: rotate(0deg) scale(1.05); z-index: 10; }
         .polaroid img { width: 100%; height: 200px; object-fit: cover; }
         .polaroid .caption { font-family: 'Dancing Script', cursive; font-size: 1.3rem; margin-top: 15px; }
 
-        /* CTA */
+        /* CTA & Modal */
         .cta { padding: 100px 20px; text-align: center; }
-        .btn { background: var(--matcha-green); color: #fff; border: none; padding: 15px 35px; font-size: 1rem; border-radius: 50px; cursor: pointer; transition: 0.3s; }
+        .btn { background: var(--matcha-green); color: #fff; border: none; padding: 15px 35px; font-size: 1rem; border-radius: 50px; cursor: pointer; transition: 0.3s; font-family: 'Poppins', sans-serif; font-weight: 600;}
         .btn:hover { background: var(--matcha-dark); }
 
-        /* Modal */
-        .modal-overlay { position: fixed; top:0; left:0; width: 100%; height: 100%; background: rgba(255,255,255,0.7); backdrop-filter: blur(5px); display: none; justify-content: center; align-items: center; }
-        .modal-content { background: #fff; padding: 40px; border-radius: 25px; text-align: center; max-width: 400px; width: 90%; }
+        .modal-overlay { position: fixed; top:0; left:0; width: 100%; height: 100%; background: rgba(255,255,255,0.7); backdrop-filter: blur(5px); display: none; justify-content: center; align-items: center; z-index: 2000;}
+        .modal-content { background: #fff; padding: 40px; border-radius: 25px; text-align: center; max-width: 400px; width: 90%; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+        .modal-content h3 { font-size: 2.5rem; color: var(--matcha-dark); margin-bottom: 15px; }
+        .modal-content p { margin-bottom: 25px; line-height: 1.6; }
         .modal-overlay.active { display: flex; }
     </style>
 </head>
 <body>
 
+    <!-- Audio Element (Ganti src dengan link MP3 lagumu) -->
+    <audio id="bg-music" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Floating Music Button -->
+    <button id="music-btn" onclick="toggleMusic()">🎵</button>
+
+    <!-- Hero -->
     <section class="hero">
-        <h1 data-aos="fade-up">Happy Birthday, Alin! 🍵</h1>
+        <h1 data-aos="zoom-in">Happy Birthday, Alin! 🍵</h1>
         <p data-aos="fade-up" data-aos-delay="200">Semoga harimu seru. Ini ada sedikit "Matcha Cake" virtual buat ngerayain hari spesialmu.</p>
-        <div class="cake-container" onclick="blowCandle()">
+        
+        <div class="cake-container" data-aos="fade-up" data-aos-delay="400" onclick="blowCandle()">
             <div class="candle"><div class="flame" id="flame"></div></div>
             <div class="cake"></div>
         </div>
+        <p class="instruction" data-aos="fade-up" data-aos-delay="600">Tap kuenya buat tiup lilin & nyalain musik!</p>
     </section>
 
+    <!-- Greeting Card (15 Kalimat) -->
+    <section class="greeting-section" data-aos="fade-up">
+        <div class="letter">
+            <h2>Dear Alin,</h2>
+            <p>
+                Selamat ulang tahun, ya! Nggak kerasa waktu cepet banget berlalunya. Di hari spesial ini, aku cuma mau bilang makasih karena kamu udah jadi versi terbaik dari diri kamu sendiri. Semoga tahun ini bawa lebih banyak kebahagiaan dan kejutan seru buat kamu. Sehat-sehat terus ya, itu yang paling penting sekarang. 
+            </p>
+            <p>
+                Semoga semua target dan plan yang udah kamu susun bisa pelan-pelan tercapai. Kurang-kurangin <i>overthinking</i>-nya, kamu tuh udah ngelakuin yang terbaik kok. Jangan lupa buat selalu luangin waktu buat seneng-seneng. Semoga rezekinya makin lancar dan berkah buat segala urusan. Kalau lagi capek, istirahat aja, dunia nggak bakal kiamat kok kalau kamu <i>break</i> bentar.
+            </p>
+            <p>
+                Semoga kita bisa terus bikin momen-momen seru bareng ke depannya. Tetep jadi Alin yang <i>humble</i> dan selalu ngangenin. Aku bakal selalu ada di sini buat <i>support</i> semua langkah kamu. <i>Enjoy your special day to the fullest!</i> <i>Happy level up</i>, sekali lagi!
+            </p>
+            <p class="signature handwriting">Salam hangat,<br>Rizqi</p>
+        </div>
+    </section>
+
+    <!-- Affirmations (15 Kalimat) -->
+    <section class="affirmation-section">
+        <h2 data-aos="fade-up">Just a reminder for you...</h2>
+        <div class="affirmation-grid">
+            <div class="affirmation-card" data-aos="fade-up"><p>1. Kamu itu perempuan pekerja keras yang luar biasa, aku salut banget.</p></div>
+            <div class="affirmation-card" data-aos="fade-up" data-aos-delay="50"><p>2. Dedikasi kamu sama kerjaan tuh keren, tapi inget kesehatan tetap nomor satu.</p></div>
+            <div class="affirmation-card" data-aos="fade-up" data-aos-delay="100"><p>3. Nggak semua hal harus kamu pikul sendiri, <i>it's okay to ask for help</i>.</p></div>
+            <div class="affirmation-card" data-aos="fade-up" data-aos-delay="150"><p>4. Setiap langkah kecil yang kamu ambil sekarang bakal bawa kamu lebih dekat ke mimpi keliling dunia.</p></div>
+            <div class="affirmation-card" data-aos="fade-up" data-aos-delay="200"><p>5. Kamu pantas dapetin semua hal baik yang semesta tawarin.</p></div>
+            <div class="affirmation-card" data-aos="fade-up" data-aos-delay="250"><p>6. Kegagalan kecil bukan berarti kamu kalah, itu cuma batu loncatan.</p></div>
+            <div class="affirmation-card" data-aos="fade-up"><p>7. Minum matcha kesukaan kamu dan tarik napas panjang tiap kali dunia kerasa berat.</p></div>
+            <div class="affirmation-card" data-aos="fade-up" data-aos-delay="50"><p>8. Kamu berhak bangga sama seberapa jauh kamu udah bertahan sampai hari ini.</p></div>
+            <div class="affirmation-card" data-aos="fade-up" data-aos-delay="100"><p>9. Jangan ragu sama kemampuan diri sendiri, kamu lebih kuat dari yang kamu kira.</p></div>
+            <div class="affirmation-card" data-aos="fade-up" data-aos-delay="150"><p>10. Capek itu wajar, kamu bukan robot, jadi valid banget kalau mau rebahan seharian.</p></div>
+            <div class="affirmation-card" data-aos="fade-up" data-aos-delay="200"><p>11. Energi positif yang kamu bawa selalu bisa bikin suasana jadi lebih hangat.</p></div>
+            <div class="affirmation-card" data-aos="fade-up" data-aos-delay="250"><p>12. Teruslah bermimpi besar, karena aku yakin kamu bisa wujudin itu semua.</p></div>
+            <div class="affirmation-card" data-aos="fade-up"><p>13. Apapun rintangannya nanti, hadapi pelan-pelan, satu per satu.</p></div>
+            <div class="affirmation-card" data-aos="fade-up" data-aos-delay="50"><p>14. Kamu itu istimewa, jangan biarin siapapun bikin kamu ngerasa sebaliknya.</p></div>
+            <div class="affirmation-card" data-aos="fade-up" data-aos-delay="100"><p>15. Hari ini, esok, dan seterusnya, aku harap kamu selalu nemuin alasan buat senyum.</p></div>
+        </div>
+    </section>
+
+    <!-- Impressions -->
     <section class="impressions">
         <h2 data-aos="fade-up">A little appreciation for you</h2>
         <div class="cards">
-            <div class="card">
+            <div class="card" data-aos="fade-up">
                 <h3>Independent Woman 💼</h3>
-                <p>Suka kagum sendiri liat kamu yang <i>independent</i> banget. Kerjanya gila-gilaan, mandiri, tapi jangan lupa kalau kamu juga berhak buat santai sebentar, ya.</p>
+                <p>Suka kagum sendiri liat kamu yang <i>independent</i> banget. Kerjanya gila-gilaan, mandiri, tapi jangan lupa istirahat ya.</p>
             </div>
-            <div class="card">
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
                 <h3>Matcha Addict 🍵</h3>
-                <p>Warna web ini gue bikin <i>matcha-themed</i> karena gue inget kamu suka banget. <i>At least</i> ini matcha virtual yang nggak bakal abis, haha.</p>
+                <p>Warna web ini dibikin <i>matcha-themed</i> karena aku tau kamu suka banget. <i>At least</i> ini matcha virtual yang nggak bakal abis.</p>
             </div>
-            <div class="card">
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
                 <h3>World Explorer ✈️</h3>
-                <p>Mimpi kamu keliling dunia pasti terwujud. Nanti kalau beneran jadi <i>traveler</i>, kabarin ya? Gue jago kok nyusun <i>itinerary</i> seru biar trip kamu nggak ribet.</p>
+                <p>Mimpi kamu keliling dunia pasti terwujud. Nanti kalau beneran <i>traveling</i>, aku jago kok nyusun <i>itinerary</i> biar trip kamu nggak ribet.</p>
             </div>
         </div>
     </section>
 
+    <!-- Gallery -->
     <section class="gallery">
-        <h2 data-aos="fade-up">The One & Only</h2>
+        <h2 data-aos="fade-up" style="color:#fff;">The One & Only</h2>
         <div class="polaroid-container">
-            <div class="polaroid"><img src="foto1.html" alt="Alin"><div class="caption">Semangat terus!</div></div>
-            <div class="polaroid"><img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e" alt="Alin"><div class="caption">Matcha time?</div></div>
-            <div class="polaroid"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2" alt="Alin"><div class="caption">Soon, world trip!</div></div>
+            <div class="polaroid" data-aos="zoom-in"><img src="https://images.unsplash.com/photo-1522069169874-c58ec4b76be5" alt="Alin"><div class="caption">Semangat terus!</div></div>
+            <div class="polaroid" data-aos="zoom-in" data-aos-delay="100"><img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e" alt="Alin"><div class="caption">Matcha time?</div></div>
+            <div class="polaroid" data-aos="zoom-in" data-aos-delay="200"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2" alt="Alin"><div class="caption">Soon, world trip!</div></div>
         </div>
     </section>
 
+    <!-- CTA -->
     <section class="cta">
-        <button class="btn" onclick="openModal()">Ada 1 kado lagi buat Alin 🎁</button>
+        <button class="btn" data-aos="fade-up" onclick="openModal()">Ada 1 kado lagi buat Alin 🎁</button>
     </section>
 
+    <!-- Modal -->
     <div class="modal-overlay" id="modal">
         <div class="modal-content">
             <h3>Happy Level Up, Lin!</h3>
@@ -115,11 +230,40 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
-        AOS.init();
+        AOS.init({ once: true, offset: 50 });
+
+        // Audio Setup
+        const bgMusic = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-btn');
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicBtn.classList.remove('playing');
+                musicBtn.innerText = '🔇';
+            } else {
+                bgMusic.play();
+                musicBtn.classList.add('playing');
+                musicBtn.innerText = '🎵';
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // Blow Candle Logic
+        let candleBlown = false;
         function blowCandle() {
+            if(candleBlown) return;
+            
             document.getElementById('flame').classList.add('out');
+            candleBlown = true;
+            
+            // Auto-play music if not playing yet
+            if(!isPlaying) toggleMusic();
+
             confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#C5D8A4', '#FFD1DC'] });
         }
+
         function openModal() { document.getElementById('modal').classList.add('active'); }
         function closeModal() { document.getElementById('modal').classList.remove('active'); }
     </script>
